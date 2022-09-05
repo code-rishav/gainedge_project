@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import csv
-import djqscsv
+from .algo import lms_algo, output
 from django.core.files.storage import FileSystemStorage
 from django.core.files.storage import default_storage
 from wsgiref.util import FileWrapper
@@ -12,8 +12,12 @@ def home(request):
         name = formdata['name']
         mu = formdata['number']
         file = request.FILES['file']
-        fs = default_storage()
-        fs.save(file.name,file)
+        '''fs = FileSystemStorage()
+        fs.save(file.name,file)'''
 
-
+        #lms_algo()
+        output(file)
+        
+        #fs = default_storage()
+        #fs.save(file.name,file)
     return render(request,'home/home.html')

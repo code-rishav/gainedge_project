@@ -8,7 +8,7 @@ from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 import padasip as pa
 
-lms_df = pd.read_csv("/Users/rishav_raj/gainedgeproject/gainedgeproject/testsite/media/mag_close.csv")
+lms_df = pd.read_csv("/Users/rishav_raj/gainedgeproject/gainedgeproject/testsite/media/magn.csv")
 lms_df.drop("Date", axis=1, inplace=True)
 
 arr_main = lms_df.values.flatten()
@@ -67,4 +67,6 @@ plt.legend()
 error_mse = mean_squared_error(x_test,ylms)
 error_mae = mean_absolute_error(x_test,ylms)
 error_r2 = r2_score(x_test,ylms)
+print(arr_main)
+print(type(arr_main))
 print("working")

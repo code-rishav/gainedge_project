@@ -1,6 +1,8 @@
+from io import StringIO
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import random
 import csv
 # %matplotlib inline
 from sklearn.metrics import mean_absolute_error
@@ -10,7 +12,15 @@ from sklearn.model_selection import train_test_split
 import padasip as pa
 import glob
 import os.path
-def lms_algo(data):
+def lms_algo(file):
+    print("LMS ALGO CALLED")
+    file_data = file.read().decode("utf-8")
+    csv_data = file_data.split("\n")
+    df = pd.DataFrame(csv_data)
+    df.drop([0],axis=0,inplace=True)
+    df = df.astype(int)
+    ar = df.values.flatten()
+
     output_path = r'media/'
 
     '''folder_path = r'media/'
@@ -21,7 +31,7 @@ def lms_algo(data):
     lms_df = pd.read_csv(max_file)
     lms_df.drop("Date", axis=1, inplace=True)'''
 
-    arr_main = data
+    arr_main = ar
     lms_arr0 = arr_main[:1000]/max(arr_main[:])
     lms_arr1 = arr_main[1:]/max(arr_main[:])
     x_test_norm = arr_main[1001:]/max(arr_main[1001:])
@@ -53,11 +63,19 @@ def lms_algo(data):
         error.append(mean_squared_error(lms_arr1[:k+test_lim],yhat)/test_lim)
     error = np.array(error)
     error_mu.append(error)
+
+    fig2 = plt.figure(figsize=(12,6))
     plt.plot(error,label = "mu = {}".format(m),linewidth=3)        
     plt.axis([0,250,0,0.015])
-    print("mu = {} completed".format(m))
     plt.legend(loc='upper right')
-    plt.savefig(os.path.join(output_path,'iterations1.png'))
+    img_data2 = StringIO()
+    fig2.savefig(img_data2,format = 'svg')
+    img_data2.seek(0)
+    iter = img_data2.getvalue()
+   # print("mu = {} completed".format(m))
+    
+    #iter = "iterations"+str(random.randint(1,10000))+".png"
+    #plt.savefig(os.path.join(output_path,iter))
     
 
     # Using predict function
@@ -67,14 +85,19 @@ def lms_algo(data):
 
     ylms = np.dot(y_LMS, xt_max)
 
-    plt.figure(figsize=(12,6))
+    fig1 = plt.figure(figsize=(12,6))
     plt.plot(x_test,'b',label = 'Original Price')
     plt.plot(ylms,'r',label = 'Predicted Price')
     plt.xlabel('Days')
     plt.ylabel('Price')
     plt.legend()
-    plt.savefig(os.path.join(output_path,'comparision1.jpg'))
+    #comp = 'comparisons'+str(random.randint(1,10000))+'.jpg'
+    #plt.savefig(os.path.join(output_path,comp))
 
+    imgdata = StringIO()
+    fig1.savefig(imgdata,format = 'svg')
+    imgdata.seek(0)
+    comp = imgdata.getvalue()
 
     
     # Error metrics
@@ -86,8 +109,9 @@ def lms_algo(data):
     print(error_mse)
     print(error_mae)
     print(error_r2)
+    return error_mse,error_mae,error_r2,iter,comp
 
-def output(file):
+'''def output(file):
     file_data = file.read().decode("utf-8")
     csv_data = file_data.split("\n")
     df = pd.DataFrame(csv_data)
@@ -95,7 +119,7 @@ def output(file):
     df = df.astype(int)
     ar = df.values.flatten()
     lms_algo(ar)
-    return 0
+    return '''
 
  
 

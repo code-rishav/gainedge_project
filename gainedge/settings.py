@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+import django_cleanup 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'django.contrib.admin',
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cleanup.apps.CleanupConfig'
 ]
 
 MIDDLEWARE = [
@@ -75,13 +76,6 @@ WSGI_APPLICATION = 'gainedge.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'ge_db',
-        "USER": 'postgres',
-        'PASSWORD':'Iamrishav@0804',
-        'HOST': 'localhost'
-    }
 }
 
 

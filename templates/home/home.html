@@ -1,28 +1,197 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAINEDGE</title>
-</head>
-<body>
-    <h1>WELCOME TO THE OUTPUT SCREEN</h1>
-    <div><a href="{% url 'admin:index' %}">VIEW ADMIN</a></div>
-    <div>
-        <h2>Find your output for the model</h2>
-        <form  method="POST" name="form" enctype="multipart/form-data"> 
-            <label for="name">NAME: </label>
-            <input type="text" name="name"><br>
-            <label for="number">Enter the value of MU</label>
-            <input type="number" name="number" id=""><br>
-            <label for="file">Upload the csv file</label>
-            <input type="file" name="file" id=""><br>
-            <input type="submit" value="SUBMIT">
-        </form>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'styles.css' %}" >
+  </head>
+  <body><!--
+  <div class=row_1>
+  
+    <a  href="#">
+      <img src="assets/images/logo.png" class="logo" alt="" width="180" height="80" >
+    </a>
+  <div class="upper">
+  <div class="cal">
+     <img src="assets/images/calc.png" class="logo" alt="" width="50" height="50" >
+    <div class="dropdown">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown link
+      </a>
 
-
+      <ul class="dropdown-menu">
+       <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+     </ul>
     </div>
-</body>
+  </div>
+  <div class="input_block">
+      <img src="assets/images/settings.png"  alt="" width="50" height="50" >
+      <input type="text" name="type" class="input">
+  </div>
+  <img src="assets/images/download.png" class="logo_sett" alt="" width="50" height="50" >
+  </div>  
+</div>
+-->
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+      <img src="{% static 'assets/images/logo.png' %}" class="logo" alt="" width="180" height="80" ></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+
+      <li class="nav-item active" id ='close'>
+        <a class="nav-link" id='close' href="#"><img src="{% static 'assets/images/calc.png' %}" class="logo_calc" alt="" width="30" height="30" > </a>
+      </li>
+        <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+     
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">1 month</a></li>
+            <li><a class="dropdown-item" href="#">3 months</a></li>
+            <li><a class="dropdown-item" href="#">6 months</a></li>
+          </ul>
+        </li>
+      
+    </div>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><img src="{% static 'assets/images/settings2.png' %}" class="logo_settings" alt="" width="30" height="30" ></a>
+      </li>
+      <li class="input_1"> <input type="text" name="type" class="input"></li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><img src="{% static 'assets/images/download2.png' %}" class="logo_download" alt="" width="30" height="30" ></a>
+      </li>
+     
+    </ul>
+  </div>
+</nav>
+
+<div class="box_2">
+<div class="outer">
+<div class="box_upload">
+  <form method="POST" name="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file">
+    <input type="submit" value="SUBMIT">
+  </form>
+  <!--<div data-v-233d445a=""><button class="btn btn-primary btn-lg" data-v-233d445a="">  Upload Image</button></div> -->
+</div>
+<div class="box_upload">
+     Popular Commodities
+  <div class="dropdown">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown link
+      </a>
+
+      <ul class="dropdown-menu">
+       <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+     </ul>
+    </div>
+</div>
+
+<div class="text_upload">tips to upload</div>
+
+</div>
+</div>
+<div class="outer_1">
+  <div class="graph_1">
+    {% if img2 %}
+    {{img2|safe}}
+    {% else %}
+    <img id="g2" src="" alt="Image not found" onerror=this.src="{% static 'assets/images/graph1.png' %}" width="515" height="550" >
+    {% endif %}
+  </div>
+  <div class="elements_3">
+    <div class="box_3">
+    
+  MSE
+  <div class="value">
+    {% if mse %}
+    {{mse}}
+    {% else %}
+    <p>no value found</p>
+    {% endif %}
+  </div>
+  </div>
+  
+  <div class="box_3">
+    MAE
+
+  <div class="value">
+    {% if mae %}
+    {{mae}}
+    {% else %}
+    <p>no value found</p>
+    {% endif %}
+  </div>
+  </div>
+  <div class="box_3">
+    R2 Score
+
+  <div class="value">
+    {% if err %}
+    {{err}}
+    {% else %}
+    <p>no value found</p>
+    {% endif %}
+  </div>
+  </div>
+    
+  </div>
+  <div class="graph_2">
+    {% if img1 %}
+    {{img1|safe}}
+    {% else %}
+    <img id="g2" src="" alt="Image not found" onerror=this.src="{% static 'assets/images/graph1.png' %}" width="515" height="550" >
+    {% endif %}
+    
+  </div>
+</div>
+</div>
+<div class="footer">
+<section class="">
+  <!-- Footer -->
+  <footer class="text-center text-white" style="background-color: #0a4275;">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: CTA -->
+      <section class="">
+        <p class="d-flex justify-content-center align-items-center">
+          <span class="me-3">Register for free</span>
+          <button type="button" class="btn btn-outline-light btn-rounded">
+            Sign up!
+          </button>
+        </p>
+      </section>
+      <!-- Section: CTA -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2020 Copyright:
+     
+    </div>
+    <!-- Copyright --> 
+    <script >
+      document.getElementById("g1").src= "{{img1}}";
+      document.getElementById("g2").src= "{{img2}}";
+    </script> 
+    <script src="{% static 'home.js'%}"></script>
+  </footer>
+  <!-- Footer -->
+</section></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
 </html>
